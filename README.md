@@ -1,11 +1,11 @@
-# 🦁 DemonLion AI Readiness Assessment
+# 🦁0xDL01 AI Readiness Assessment
 
 **Live Demo:** 🔗 [https://0xDL01.github.io/ai-assessment/](https://0xDL01.github.io/ai-assessment/)
 
 ---
 
 ## ⚙️ Overview
-The **DemonLion AI Readiness Tool** helps organisations instantly assess their AI maturity across five industry-standard pillars:
+The **0XDL01 AI Readiness Tool** helps organisations instantly assess their AI maturity across five industry-standard pillars:
 
 - 🧭 **Strategy** – Alignment of AI with business goals  
 - 🧮 **Data** – Quality, accessibility, and governance  
@@ -23,7 +23,7 @@ Unlike generic surveys, this tool provides:
 
 ## 💡 Why This Matters
 Most “AI Readiness Assessments” only output a score.  
-**DemonLion’s approach goes further:**
+**Our approach goes further:**
 - Explains *how major companies think about readiness*  
 - Suggests *exact automations or small AI projects* suitable for that company  
 - Provides *real cost options* and *contact routes* for larger builds  
