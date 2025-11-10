@@ -1,71 +1,47 @@
-# 🦁0xDL01 AI Readiness Assessment
+<div align="center">
 
-**Live Demo:** 🔗 [https://0xDL01.github.io/ai-assessment/](https://0xDL01.github.io/ai-assessment/)
+# 🦁 **0XDL01 AI Readiness Assessment**
+### _“We don’t just assess readiness — we weaponise it into execution.”_
 
----
-
-## ⚙️ Overview
-The **0XDL01 AI Readiness Tool** helps organisations instantly assess their AI maturity across five industry-standard pillars:
-
-- 🧭 **Strategy** – Alignment of AI with business goals  
-- 🧮 **Data** – Quality, accessibility, and governance  
-- ⚙️ **Technology** – Infrastructure, APIs, and MLOps maturity  
-- 👥 **People** – Skills, culture, and enablement  
-- 🛡️ **Governance** – Security, ethics, and responsible AI practices  
-
-Unlike generic surveys, this tool provides:
-- 📊 Real-time weighted scoring & visual radar chart  
-- 🧠 Contextual reasoning explaining *why* each score matters  
-- 🧰 Actionable **tool suggestions** with estimated DIY/enterprise pricing  
-- ⚡ 100% client-side (no backend) — privacy-safe and fast
+🔗 **Live Demo:** [https://0xDL01.github.io/ai-assessment/](https://0xDL01.github.io/ai-assessment/)  
+📧 **Contact:** [contact@demonlion.ai](1inmillionrichi@protonmail.com)  
+🌍 **Author:** [NABHARAJ (0xDL01)](https://github.com/0xDL01)
 
 ---
 
-## 💡 Why This Matters
-Most “AI Readiness Assessments” only output a score.  
-**Our approach goes further:**
-- Explains *how major companies think about readiness*  
-- Suggests *exact automations or small AI projects* suitable for that company  
-- Provides *real cost options* and *contact routes* for larger builds  
+### ⚙️ **Overview**
+A **lightweight, client-side AI Readiness Assessment Tool** that measures an organisation’s maturity across 5 core pillars:
 
-This prototype demonstrates the **transition from advisory → actionable automation** — the next generation of AI consultancy.
+| Pillar | Focus |
+|--------|--------|
+| 🧭 **Strategy** | Alignment of AI vision with business goals |
+| 🧮 **Data** | Quality, governance, and accessibility |
+| ⚙️ **Technology** | Infrastructure, APIs, and MLOps |
+| 👥 **People** | Skill, adoption, and collaboration |
+| 🛡️ **Governance** | Privacy, ethics, and security |
 
----
-
-## 🧩 Features
-| Feature | Description |
-|----------|--------------|
-| 🌗 Modern UI | Dark gradient theme with amber & cyan branding |
-| ⚖️ Weighted Logic | Strategy (20%), Data (25%), Tech (20%), People (20%), Gov (15%) |
-| 📈 Radar Chart | Visual score across 5 dimensions |
-| 🧠 Reasoning Engine | Generates realistic insights based on pillar performance |
-| 🔧 Tool Recommender | Suggests specific prebuilt tools or GitHub repos |
-| 💬 Contact CTA | Direct link to `1inmillionrichi@protonmail.com` |
-| 🔐 100% Client-Side | No backend; safe for demos and enterprises |
+It provides **real-time scoring**, **reasoning**, and **actionable tool recommendations** — including **DIY, Assisted, and Enterprise options**.
 
 ---
 
-## 🚀 How to Run Locally
+### ✨ **Highlights**
+- ⚡ Instant, no-install deployment (pure HTML/JS)
+- 📊 Dynamic radar chart visualisation (Chart.js)
+- 🧠 Weighted scoring logic (20-25-20-20-15 model)
+- 💬 Clear reasoning and explanations for each pillar
+- 🧰 Actionable AI tool suggestions + cost breakdowns
+- 🔐 Fully client-side — no data collection, no backend
+
+---
+
+### 🧠 **Tech Stack**
+**HTML5** · **CSS3** · **Vanilla JavaScript** · **Chart.js v4.4.1**  
+**Google Fonts (Inter)** · **Hosted on GitHub Pages**
+
+---
+
+### 🚀 **Quick Start**
 ```bash
 git clone https://github.com/0xDL01/ai-assessment.git
 cd ai-assessment
-open index.html   # (or right-click → open in browser)
-```
-No dependencies · No installation required · 100% client-side
-
-🌐 Live Site
-Hosted on GitHub Pages:
-➡️ https://0xDL01.github.io/ai-assessment/
-
-
-🧩 Roadmap
-
- Integrate Supabase logging for anonymous analytics
- 
- Add sector-specific question sets (Finance, Retail, Health)
- 
- GPT-4 powered dynamic recommendations
- 
- Live contact form / instant quotation
- 
- Link tool cards to GitHub AI starter repos
+open index.html   # or right-click → open in browser
