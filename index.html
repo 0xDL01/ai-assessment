@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DemonLion AI Readiness Assessment</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Chart.js for the radar chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#0b1220;           /* deep slate */
+      --panel:#0f1629;        /* card background */
+      --muted:#94a3b8;        /* text muted */
+      --text:#e5e7eb;         /* text */
+      --brand:#f59e0b;        /* amber */
+      --brand-2:#22d3ee;      /* cyan accent */
+      --ok:#34d399;           /* green */
+      --warn:#fbbf24;         /* amber */
+      --bad:#f87171;          /* red */
+      --ring: rgba(34,211,238,.35);
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{ margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: radial-gradient(1200px 600px at 20% 0%, #0b2030 0%, #0b1220 45%, #070b14 100%); color:var(--text); }
+    .wrap{ max-width:1100px; margin:0 auto; padding:28px 16px 80px }
+    header{ display:flex; align-items:center; gap:14px; margin-bottom:18px }
+    .lion{ font-size:28px }
+    h1{ font-weight:800; font-size:28px; margin:0 }
+    .sub{ color:var(--muted); margin:4px 0 20px }
+
+    .grid{ display:grid; gap:16px }
+    @media(min-width:900px){ .grid{ grid-template-columns: 1.1fr .9fr } }
+
+    .card{ background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px 18px; box-shadow:0 6px 24px rgba(3,8,20,.35); }
+    .card h3{ margin:0 0 12px; font-size:18px }
+
+    .meta{ display:grid; gap:12px; grid-template-columns:1fr }
+    @media(min-width:640px){ .meta{ grid-template-columns: repeat(3, 1fr) } }
+    label{ font-weight:600; font-size:13px; color:#cbd5e1; display:block; margin-bottom:6px }
+    input, select{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#0b1426; color:var(--text); outline:none }
+    input:focus, select:focus{ border-color: var(--brand-2); box-shadow:0 0 0 4px var(--ring) }
+
+    .question{ padding:12px 12px; border-radius:12px; background:#0c1426; border:1px solid rgba(255,255,255,.06); margin-bottom:10px }
+    .question .qtxt{ font-weight:600; margin-bottom:8px }
+
+    .btn{ background:linear-gradient(90deg, var(--brand), #ffd166); color:#171717; border:none; padding:12px 18px; border-radius:12px; font-weight:800; cursor:pointer; box-shadow:0 10px 24px rgba(245,158,11,.25); }
+    .btn:hover{ transform:translateY(-1px) }
+
+    .pill{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.2px }
+    .pill.low{ background:rgba(248,113,113,.15); color:#fecaca; border:1px solid rgba(248,113,113,.5) }
+    .pill.med{ background:rgba(251,191,36,.15); color:#fde68a; border:1px solid rgba(251,191,36,.45) }
+    .pill.hi{ background:rgba(52,211,153,.15); color:#a7f3d0; border:1px solid rgba(52,211,153,.45) }
+
+    .muted{ color:var(--muted) }
+    .row{ display:flex; gap:10px; align-items:center }
+
+    .suggest{ border-left:4px solid var(--brand-2); padding-left:12px; margin:10px 0 14px }
+    .cost{ color:#c7d2fe; font-weight:700 }
+
+    footer{ margin-top:28px; color:var(--muted); text-align:center }
+    a{ color:#7dd3fc; text-decoration:none }
+    a:hover{ text-decoration:underline }
+
+    .notice{ font-size:12px; color:#9ca3af }
+    .grid-2{ display:grid; gap:14px }
+    @media(min-width:840px){ .grid-2{ grid-template-columns: 1fr 1fr } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="lion">🦁</div>
+      <div>
+        <h1> 0xDL01 AI Readiness Assessment</h1>
+        <div class="sub">Fast, opinionated assessment aligned with industry pillars (Strategy, Data, Tech, People, Governance). Get a score, <b>reasons</b>, and <b>actionable tools</b> instantly.</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h3>1) Company basics</h3>
+        <div class="meta">
+          <div>
+            <label>Company name</label>
+            <input id="c_name" placeholder="Acme Ltd" />
+          </div>
+          <div>
+            <label>Sector</label>
+            <select id="c_sector">
+              <option>General</option>
+              <option>Finance</option>
+              <option>Retail & eCommerce</option>
+              <option>Healthcare</option>
+              <option>Manufacturing</option>
+              <option>Education</option>
+              <option>Public Sector</option>
+            </select>
+          </div>
+          <div>
+            <label>Primary goal</label>
+            <select id="c_goal">
+              <option>Automation</option>
+              <option>Analytics / BI</option>
+              <option>Customer Support / Chatbot</option>
+              <option>Fraud / Risk</option>
+              <option>Cybersecurity</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Scoring model</h3>
+        <div class="notice">Weights: Strategy 20%, Data 25%, Tech 20%, People 20%, Governance 15%. Levels: <span class="pill low">Nascent</span> / <span class="pill med">Emerging</span> / <span class="pill hi">Established</span> / <span class="pill hi" style="background:rgba(34,211,238,.15); color:#a5f3fc; border-color:rgba(34,211,238,.45)">Leading</span></div>
+        <p class="muted">This mirrors how major firms evaluate AI readiness: you need <b>data quality</b> and <b>infrastructure</b> before scaling models; <b>strategy</b> aligns value; <b>people & governance</b> keep it safe and adopted.</p>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:16px">
+      <h3>2) Questions (1 = not at all, 5 = fully)</h3>
+      <div id="questions"></div>
+      <button class="btn" id="btnRun">Run Assessment</button>
+    </section>
+
+    <section id="results" class="card" style="margin-top:16px; display:none">
+      <h3>3) Results & reasoning</h3>
+      <div class="grid-2">
+        <div>
+          <canvas id="radar" height="250"></canvas>
+          <p class="muted" id="overall"></p>
+          <div id="levelPill"></div>
+        </div>
+        <div id="reasons"></div>
+      </div>
+    </section>
+
+    <section id="actions" class="card" style="margin-top:16px; display:none">
+      <h3>4) Suggested tools & next moves</h3>
+      <div id="suggestions"></div>
+      <p class="notice">DIY = free GitHub code. Assisted = remote setup. Enterprise = custom, secured build. Exact pricing depends on scope and data.</p>
+      <div class="row" style="margin-top:8px">
+        <button class="btn" onclick="window.print()">Download / Print Report</button>
+        <a class="btn" style="background:linear-gradient(90deg,#22d3ee,#60a5fa); color:#0b1220" href="mailto:contact@demonlion.ai?subject=AI%20Assessment%20Follow-up">Contact us</a>
+      </div>
+    </section>
+
+    <footer>
+      Built with ❤️ by 0xDL01. 
+    </footer>
+  </div>
+
+<script>
+  // ----------------------
+  //  CONFIG
+  // ----------------------
+  const PILLARS = {
+    strategy: { label: 'Strategy', weight: 0.20 },
+    data:     { label: 'Data',     weight: 0.25 },
+    tech:     { label: 'Tech',     weight: 0.20 },
+    people:   { label: 'People',   weight: 0.20 },
+    gov:      { label: 'Governance', weight: 0.15 }
+  };
+
+  const QUESTIONS = [
+    { t: 'We have a documented AI strategy and roadmap.', k:'strategy' },
+    { t: 'Leadership actively sponsors AI initiatives with KPIs.', k:'strategy' },
+
+    { t: 'Our data is clean, discoverable, and mostly structured.', k:'data' },
+    { t: 'We maintain labeled datasets or quality dashboards.', k:'data' },
+
+    { t: 'We run on cloud and expose services via APIs/pipelines.', k:'tech' },
+    { t: 'We have basic MLOps (versioning, deployment, monitoring).', k:'tech' },
+
+    { t: 'Staff receive AI training and know when to use it.', k:'people' },
+    { t: 'Teams collaborate across functions to ship AI features.', k:'people' },
+
+    { t: 'We have policies for privacy, bias, and model risk.', k:'gov' },
+    { t: 'Security reviews / audits cover AI systems and data.', k:'gov' }
+  ];
+
+  const WHAT_OTHERS_CHECK = {
+    strategy: [
+      'AI linked to revenue/cost KPIs',
+      'Named owners and budget for AI projects',
+      'A prioritised use‑case backlog'
+    ],
+    data: [
+      'Data catalog + governance owner',
+      'Automated pipelines & quality checks',
+      'Access controls and lineage'
+    ],
+    tech: [
+      'Cloud baseline, GPUs as needed',
+      'APIs/ETL, CI/CD for ML',
+      'Monitoring & rollback'
+    ],
+    people: [
+      'Training plan for non‑technical roles',
+      'Product + data teams paired',
+      'Change management process'
+    ],
+    gov: [
+      'Documented AI policy',
+      'Bias/privacy audit templates',
+      'Clear accountability & review board'
+    ]
+  };
+
+  const SUGGESTIONS = {
+    strategy: [
+      { name:'AI Roadmap Sprint', why:'Clarify value and sequence of use‑cases.', cost:'DIY template £0 · Assisted £299 · Enterprise £1,499', link:'#' },
+      { name:'KPI & Value Tracker', why:'Make benefits visible to leadership.', cost:'DIY £0 · Assisted £199', link:'#' }
+    ],
+    data: [
+      { name:'Data Cleaning Pipeline (Python)', why:'Stabilise inputs before any models.', cost:'DIY £0 · Assisted £199', link:'#' },
+      { name:'Labeling + Quality Dashboard', why:'Create trustworthy datasets.', cost:'DIY £0 · Assisted £399', link:'#' }
+    ],
+    tech: [
+      { name:'API & MLOps Starter (FastAPI + Docker)', why:'Ship models reliably.', cost:'DIY £0 · Assisted £499 · Enterprise £1,999', link:'#' },
+      { name:'Private GPT‑4All Assistant', why:'Local, cost‑controlled LLM for teams.', cost:'Enterprise from £999', link:'#' }
+    ],
+    people: [
+      { name:'AI Basics Micro‑Learning Pack', why:'Raise baseline literacy quickly.', cost:'DIY £0 · Assisted £199', link:'#' },
+      { name:'Use‑case Discovery Workshop', why:'Co‑create high‑value automations.', cost:'Enterprise £799', link:'#' }
+    ],
+    gov: [
+      { name:'AI Policy Starter Kit (GDPR + Bias)', why:'Reduce risk before scaling.', cost:'DIY £0 · Assisted £399', link:'#' },
+      { name:'Security & Model Risk Mini‑Audit', why:'Find gaps in data/model handling.', cost:'Enterprise £799', link:'#' }
+    ]
+  };
+
+  // ----------------------
+  //  RENDER QUESTIONS
+  // ----------------------
+  const qWrap = document.getElementById('questions');
+  QUESTIONS.forEach((q, i) => {
+    const el = document.createElement('div');
+    el.className = 'question';
+    el.innerHTML = `
+      <div class="qtxt">${i+1}. ${q.t}</div>
+      <select id="q_${i}" required>
+        <option value="1">1 – Not at all</option>
+        <option value="2">2 – Slightly</option>
+        <option value="3" selected>3 – Moderate</option>
+        <option value="4">4 – Mostly</option>
+        <option value="5">5 – Fully</option>
+      </select>`;
+    qWrap.appendChild(el);
+  });
+
+  document.getElementById('btnRun').addEventListener('click', () => {
+    const vals = QUESTIONS.map((q, i) => ({ k:q.k, v: parseInt(document.getElementById(`q_${i}`).value) }));
+    const byPillar = { strategy:[], data:[], tech:[], people:[], gov:[] };
+    vals.forEach(({k,v}) => byPillar[k].push(v));
+
+    // averages
+    const avg = o => o.reduce((a,b)=>a+b,0) / o.length;
+    const pillarScores = {
+      strategy: avg(byPillar.strategy),
+      data:     avg(byPillar.data),
+      tech:     avg(byPillar.tech),
+      people:   avg(byPillar.people),
+      gov:      avg(byPillar.gov)
+    };
+
+    // weighted overall 1-5
+    const overall = (
+      pillarScores.strategy * PILLARS.strategy.weight +
+      pillarScores.data * PILLARS.data.weight +
+      pillarScores.tech * PILLARS.tech.weight +
+      pillarScores.people * PILLARS.people.weight +
+      pillarScores.gov * PILLARS.gov.weight
+    );
+
+    const level = overall < 2.0 ? {k:'Nascent', cls:'low'} :
+                  overall < 3.0 ? {k:'Emerging', cls:'med'} :
+                  overall < 4.0 ? {k:'Established', cls:'hi'} : {k:'Leading', cls:'hi'};
+
+    // Show results
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('actions').style.display = 'block';
+    document.getElementById('overall').innerHTML = `<b>Overall:</b> ${overall.toFixed(1)} / 5 · <span class="pill ${level.cls}">${level.k}</span>`;
+
+    // Radar chart
+    const ctx = document.getElementById('radar');
+    if(window._radar) window._radar.destroy();
+    window._radar = new Chart(ctx, {
+      type:'radar',
+      data:{
+        labels: Object.values(PILLARS).map(p=>p.label),
+        datasets:[{
+          label:'Scores',
+          data:[pillarScores.strategy, pillarScores.data, pillarScores.tech, pillarScores.people, pillarScores.gov],
+          borderColor:'#22d3ee',
+          backgroundColor:'rgba(34,211,238,.15)'
+        }]
+      },
+      options:{ scales:{ r:{ suggestedMin:0, suggestedMax:5, ticks:{stepSize:1, color:'#94a3b8'}, grid:{ color:'rgba(255,255,255,.08)' }, angleLines:{ color:'rgba(255,255,255,.08)' }, pointLabels:{ color:'#cbd5e1' } } }, plugins:{ legend:{ display:false } } }
+    });
+
+    // Reasons per pillar
+    const reasons = document.getElementById('reasons');
+    reasons.innerHTML = '';
+    Object.entries(pillarScores).forEach(([k,v]) => {
+      const title = PILLARS[k].label;
+      const badge = v<2 ? '<span class="pill low">Weak</span>' : v<3 ? '<span class="pill med">Developing</span>' : v<4 ? '<span class="pill hi">Good</span>' : '<span class="pill hi">Strong</span>';
+      const expl = explain(k, v);
+      const others = WHAT_OTHERS_CHECK[k].map(x=>`<li>${x}</li>`).join('');
+      const block = document.createElement('div');
+      block.className = 'suggest';
+      block.innerHTML = `<b>${title}</b> — ${badge}<br><span class="muted">${expl}</span><br><small class="muted">What major assessors look for:</small><ul class="muted">${others}</ul>`;
+      reasons.appendChild(block);
+    });
+
+    // Suggestions: focus on 2 weakest pillars
+    const sorted = Object.entries(pillarScores).sort((a,b)=>a[1]-b[1]).slice(0,2).map(([k])=>k);
+    const sWrap = document.getElementById('suggestions');
+    sWrap.innerHTML = '';
+    sorted.forEach(k => {
+      const h = document.createElement('h4');
+      h.innerHTML = `🛠 Focus: ${PILLARS[k].label}`;
+      sWrap.appendChild(h);
+      SUGGESTIONS[k].forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggest';
+        div.innerHTML = `<b>${item.name}</b><br><span class="muted">Why: ${item.why}</span><br><span class="cost">${item.cost}</span>`;
+        sWrap.appendChild(div);
+      });
+    });
+  });
+
+  function explain(key, val){
+    const level = val<2 ? 'low' : val<3 ? 'mid' : val<4 ? 'good' : 'high';
+    const L = {
+      strategy: {
+        low:  'No clear AI direction or KPIs. Others would say: set value targets before buying tools.',
+        mid:  'Some initiatives exist, but prioritisation is unclear. Define a 3‑month roadmap.',
+        good: 'Strategy mostly aligned with business outcomes; tighten KPI tracking.',
+        high: 'Clear portfolio and KPIs; you can scale pilots intentionally.'
+      },
+      data: {
+        low:  'Data is fragmented/dirty. Industry rule: fix data before models.',
+        mid:  'You have usable sources but quality/labels are patchy. Add pipelines and QA.',
+        good: 'Data is mostly reliable; invest in labeling & cataloging to accelerate.',
+        high: 'Strong foundations. You can support multiple AI use‑cases in parallel.'
+      },
+      tech: {
+        low:  'Lack of APIs/cloud or deployment path. Build a minimal platform first.',
+        mid:  'Some cloud and scripts exist; formalise CI/CD and monitoring.',
+        good: 'Solid platform. Add MLOps templates to speed delivery.',
+        high: 'Mature stack; optimising cost/performance is your next lever.'
+      },
+      people: {
+        low:  'Low literacy or ownership. Begin training and appoint product owners.',
+        mid:  ' pockets of skill but adoption is inconsistent. Run enablement sprints.',
+        good: 'Teams collaborate; expand enablement to non‑technical staff.',
+        high: 'Culture supports data‑driven work; scale champions across units.'
+      },
+      gov: {
+        low:  'No policy for privacy/bias/risk. Establish a lightweight framework now.',
+        mid:  'Ad‑hoc reviews exist; formalise checklists and approvals.',
+        good: 'Policy present; automate bias/privacy checks.',
+        high: 'Governance embedded; you can move fast with control.'
+      }
+    };
+    return L[key][level];
+  }
+</script>
+</body>
+</html>
