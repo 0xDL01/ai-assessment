@@ -40,7 +40,7 @@ This prototype demonstrates the **transition from advisory → actionable automa
 | 📈 Radar Chart | Visual score across 5 dimensions |
 | 🧠 Reasoning Engine | Generates realistic insights based on pillar performance |
 | 🔧 Tool Recommender | Suggests specific prebuilt tools or GitHub repos |
-| 💬 Contact CTA | Direct link to `contact@demonlion.ai` |
+| 💬 Contact CTA | Direct link to `1inmillionrichi@protonmail.com` |
 | 🔐 100% Client-Side | No backend; safe for demos and enterprises |
 
 ---
@@ -50,3 +50,22 @@ This prototype demonstrates the **transition from advisory → actionable automa
 git clone https://github.com/0xDL01/ai-assessment.git
 cd ai-assessment
 open index.html   # (or right-click → open in browser)
+```
+No dependencies · No installation required · 100% client-side
+
+🌐 Live Site
+Hosted on GitHub Pages:
+➡️ https://0xDL01.github.io/ai-assessment/
+
+
+🧩 Roadmap
+
+ Integrate Supabase logging for anonymous analytics
+ 
+ Add sector-specific question sets (Finance, Retail, Health)
+ 
+ GPT-4 powered dynamic recommendations
+ 
+ Live contact form / instant quotation
+ 
+ Link tool cards to GitHub AI starter repos
