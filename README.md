@@ -1,12 +1,9 @@
-<p align="center">
-  <h1 align="center">🦁 0xDL01 AI Readiness Assessment</h1>
-  <h3 align="center"><em>“We don’t just assess readiness — we weaponise it into execution.”</em></h3>
-  <p align="center">
-    🔗 <b>Live Demo:</b> <a href="https://0xDL01.github.io/ai-assessment/">https://0xDL01.github.io/ai-assessment/</a><br>
-    📧 <b>Contact:</b> <a href="mailto:1inmillionrichi@protonmail.com">1inmillionrichi@protonmail.com</a><br>
-    🌍 <b>Author:</b> <a href="https://github.com/0xDL01">NABHARAJ (0xDL01)</a>
-  </p>
-</p>
+# 🦁 0xDL01 AI Readiness Assessment
+> “We don’t just assess readiness — we weaponise it into execution.”
+
+**Live Demo:** [https://0xDL01.github.io/ai-assessment/](https://0xDL01.github.io/ai-assessment/)  
+**Contact:** [1inmillionrichi@protonmail.com](mailto:1inmillionrichi@protonmail.com)  
+**Author:** [NABHARAJ (0xDL01)](https://github.com/0xDL01)
 
 ---
 
